@@ -3,16 +3,30 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Home</ion-title>
+    <ion-title>Ventas</ion-title>
+    
+   
   </ion-navbar>
+  <ion-item (click)="goToDetalleRecibo()">
+    <ion-icon name="clipboard"></ion-icon>
+     {{carrito.carrito.length}}
+<h2> Venta: $ {{carrito.total}}</h2>
+
+</ion-item>
+
 </ion-header>
 
-<ion-content padding>
+   
+      
+<ion-content  scroll="false"  no-padding>
+    
+    <lista></lista>
   
+    
+    
+  </ion-content>
 
-  <p>
-   Inicio
-  </p>
+
+ 
 
 
-</ion-content>

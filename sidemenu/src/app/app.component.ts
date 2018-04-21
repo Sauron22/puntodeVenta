@@ -8,8 +8,9 @@ import { ListPage } from '../pages/list/list';
 import {ArticulosPage} from '../pages/articulos/articulos'
 
 import {EditarPage} from '../pages/editar/editar'
-import {RecibosPage} from '../pages/recibos/recibos'
-
+import {RecibosPage} from '../pages/recibos/recibos'; 
+import {ImprimirPage} from '../pages/imprimir/imprimir';
+import { App, AlertController} from 'ionic-angular';
 @Component({
   templateUrl: 'app.html'
 })
@@ -21,7 +22,8 @@ export class MyApp {
 pages: Array<{title: string, component: any}>;
   //pages2: Array<{title: string, component: any}>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen,
+  public app: App, public alertCtrl:AlertController) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
@@ -38,16 +40,62 @@ pages: Array<{title: string, component: any}>;
 
   initializeApp() {
     this.platform.ready().then(() => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
+
+
+      
+
+
+
       this.statusBar.styleDefault();
       this.splashScreen.hide();
-    });
+      this.platform.registerBackButtonAction(() => {
+        let nav = this.app.getActiveNavs()[0];
+        let activeView = nav.getActive();    
+        if(activeView.name === "ArticulosPage") {
+          if (nav.canGoBack()){ //Can we go back?
+            nav.pop();
+        } else {
+               this.nav.setRoot(HomePage);
+           }
+
+        }
+        if(activeView.name === "HomePage") {
+          if (nav.canGoBack()){ //Can we go back?
+            nav.pop();
+        } else {
+          const alert = this.alertCtrl.create({
+            title: 'Salir de la aplicación',
+                            message: 'Quieres Salir de la aplicación?',
+                            buttons: [{
+                                text: 'Cancelar',
+                                role: 'cancel',
+                                handler: () => {
+                                    console.log('Application exit prevented!');
+                                }
+                            },{
+                                text: 'Cerrar Aplicación',
+                                handler: () => {
+                                    this.platform.exitApp(); // Close this application
+                                }
+                            }]
+                        });
+                        alert.present();
+
+        }
+        }
+
+      });
+});
   }
 navegaEditar(){
-  this.nav.setRoot(ArticulosPage);
+ this.nav.setRoot(ArticulosPage);
   this.nav.push(EditarPage);
 
+
+}
+imprimir(){
+  this.nav.setRoot(ArticulosPage);
+  this.nav.push(ImprimirPage);
 }
 navegaLista(){
   this.nav.setRoot(ArticulosPage);
@@ -55,15 +103,25 @@ navegaLista(){
 
   
 }
+navegaRecibos(){
+  this.nav.setRoot(ArticulosPage);
+  this.nav.push(RecibosPage);
 
+}
 navegaArticulos(){
-  this.nav.setRoot(HomePage); 
-this.nav.push(ArticulosPage);
+  this.nav.setRoot(ArticulosPage);
+  
+
+
+
+
 
 }
   openPage(page) {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
+    
     this.nav.setRoot(page.component);
+    
   }
 }

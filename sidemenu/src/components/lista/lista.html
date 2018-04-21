@@ -1,0 +1,51 @@
+<div  no-padding>
+  
+  <ion-segment [(ngModel)]="pet">
+    <ion-segment-button value="todo">
+      <ion-icon name="ios-list"></ion-icon>  Todo
+    </ion-segment-button>
+    <ion-segment-button value="puppies">
+      <ion-icon name="ios-star-outline"></ion-icon>  Otro
+    </ion-segment-button>
+  </ion-segment>
+</div>
+
+<div [ngSwitch]="pet">
+  <ion-list *ngSwitchCase="'puppies'">
+    <ion-item>
+      <ion-thumbnail item-start>
+        <img src="img/thumbnail-puppy-1.jpg">
+      </ion-thumbnail>
+      <h2>Ruby</h2>
+    </ion-item>
+    ...
+  </ion-list>
+
+  
+  <ion-list *ngSwitchCase="'todo'" no-padding>
+<ion-item no-padding *ngFor="let p of productos" (click)="suma(p)" text-nowrap>
+        <ion-grid item-content no-padding>
+            <ion-row>
+             
+              
+             
+      <ion-col col-9>
+        
+        <div text-nowrap>  
+         {{p.nombre_corto}}
+      
+          </div>
+        {{p.codigo}} </ion-col>
+ 
+     
+{{carrito.redondea(p.precio_unitario)}}
+
+
+            </ion-row>
+            
+            </ion-grid>
+          </ion-item>
+      
+    </ion-list>
+
+</div>
