@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Ventas</ion-title></ion-navbar>
+    <button [disabled]="print" ion-button color="light" (click)="imprime()">Imprimir &nbsp;
+      <ion-icon ios="ios-print" md="md-print"></ion-icon>
+    </button>
+    <button   ion-button  color="secondary"  (click)="cobra()">Cobrar:  {{carrito.total}} &nbsp;
+      <ion-icon name="cash"></ion-icon>
+      </button>
+  
+Tiempo/get/Productos {{g.tiempo1}}
+</ion-header>
+
+   
+      
+<ion-content  scroll="false"  no-padding>
+    <ion-item>   <ion-input type="text"(keypress)="funcion($event)"  [(ngModel)]="texto">
+
+    </ion-input></ion-item>
+    <lista></lista>
+  
+    
+    
+  </ion-content>
+  
+
+ 
+
+
