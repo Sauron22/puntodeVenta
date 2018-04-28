@@ -4,7 +4,7 @@ import { NavController } from 'ionic-angular';
 import {ArticulosProvider} from '../../providers/articulos-servicio/articulos-servicio';
 import {CarritoProvider} from '../../providers/carrito/carrito';
 import {ListaComponent} from '../../components/lista/lista';
-import {HeaderComponent} from '../../components/header/header';
+
 import {DetalleReciboPage} from  '../detalle-recibo/detalle-recibo';
 import {ImprimirPage} from '../imprimir/imprimir';
 import {GlobalProvider} from '../../providers/global/global';
@@ -25,17 +25,26 @@ print=true;
               public  carrito:CarritoProvider
   
   ) {
-
+   
 }
 ngOnInit(){
-  var start = new Date().getTime();
-
-  
-  this.caragarProductos();
-  this.g.tiempo1=(new Date().getTime() - start)/1000;
-  console.log(this.productos);
+ 
+}
+cargarporCodigo(){
+  var t0 = new Date().getTime();
+  this.g.getProductoByCodigo().subscribe(
+     res => {
+            
+     },
+     error=>{
+      
+     }
+  );
+  var  t1 = new Date().getTime();
+  this.g.tiempo2=  (t1-t0)/1000;
 }
 caragarProductos():void{
+  var t0 =  new Date().getTime();
   this.g.getProductos().subscribe(
     res=>{
       this.productos=res;
@@ -43,7 +52,9 @@ caragarProductos():void{
         error=>{
              console.log(error);
        }
-  )
+  );
+  var t1= new Date().getTime();
+  this.g.tiempo1= (t1-t0)/1000;
 
 }
  

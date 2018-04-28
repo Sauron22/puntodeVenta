@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {CarritoProvider} from '../../providers/carrito/carrito';
-import {ArticulosProvider} from '../../providers/articulos-servicio/articulos-servicio'
+import {ArticulosProvider} from '../../providers/articulos-servicio/articulos-servicio';
+import {GlobalProvider} from '../../providers/global/global'
 /**
  * Generated class for the ListaComponent component.
  *

@@ -15,16 +15,30 @@ import { Http,Response } from '@angular/http';
 @Injectable()
 export class GlobalProvider {
 test:any;
-tiempo1;
-tiempo2;
+tiempo1:any;
+tiempo2:any;
+carrito=[];
 productos=[];
   constructor(public http: Http) {
-
-this.getProductos();
          
   }
   ngOnInit(){
  
+  }
+  redondear(numero):number{
+    return  numero.toFixed(2);
+  }
+  contarCuantos(p):number{
+var contador=1;
+  var  auxiliar=true;
+    while(auxiliar){
+    let item1 =this.carrito.find(i => i.codigo === p.codigo);
+    if(item1==undefined){
+      auxiliar=false;
+    }
+
+  }
+    return 0;
   }
 
 prueba(){

@@ -1,11 +1,9 @@
 import { NgModule } from '@angular/core';
 import { ListaComponent } from './lista/lista';
-import { HeaderComponent } from './header/header';
+
 @NgModule({
-	declarations: [ListaComponent,
-    HeaderComponent],
+	declarations: [ListaComponent,],
 	imports: [],
-	exports: [ListaComponent,
-    HeaderComponent]
+	exports: [ListaComponent,]
 })
 export class ComponentsModule {}
