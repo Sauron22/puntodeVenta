@@ -22,6 +22,9 @@ import { BluetoothSerial } from '@ionic-native/bluetooth-serial';
 import { PrintProvider } from '../providers/blue/blue';
 import { ImprimirPage } from '../pages/imprimir/imprimir';
 import {PrinterListModalPage} from '../pages/printer-list-modal/printer-list-modal';
+import { ScanerProvider } from '../providers/scaner/scaner';
+import {HeaderComponent} from '../components/header/header';
+import { GProvider } from '../providers/g/g';
 @NgModule({
 
   declarations: [
@@ -36,6 +39,7 @@ import {PrinterListModalPage} from '../pages/printer-list-modal/printer-list-mod
     DetalleReciboPage,
     PrinterListModalPage,
     ImprimirPage,
+    HeaderComponent
 
   
   ],
@@ -53,7 +57,8 @@ import {PrinterListModalPage} from '../pages/printer-list-modal/printer-list-mod
     ConfPage,RecibosPage,
     DetalleReciboPage,
     ImprimirPage,
-    PrinterListModalPage
+    PrinterListModalPage,
+    HeaderComponent
  
 
   ],
@@ -66,7 +71,9 @@ import {PrinterListModalPage} from '../pages/printer-list-modal/printer-list-mod
     ArticulosProvider,
     BluetoothSerial,
     CarritoProvider,
-    PrintProvider
+    PrintProvider,
+    ScanerProvider,
+    GProvider
   ]
 })
 export class AppModule {}

@@ -1,51 +1,45 @@
 <div  no-padding>
+<button ion-button (click)="llena()"> Llena</button>
+    <button [disabled]="!activo" ion-button  color="light" (click)="imprime()">
+    <ion-icon name="print"></ion-icon>
+
+  </button>
+  <button ion-button color="secondary" (click)="activa()">  
+      {{suma()}} 
+
+  </button>
   
+
   <ion-segment [(ngModel)]="pet">
     <ion-segment-button value="todo">
-      <ion-icon name="ios-list"></ion-icon>  Todo
+      <ion-icon name="ios-list"></ion-icon> Ticket
     </ion-segment-button>
-    <ion-segment-button value="puppies">
-      <ion-icon name="ios-star-outline"></ion-icon>  Otro
-    </ion-segment-button>
+
   </ion-segment>
 </div>
 
 <div [ngSwitch]="pet">
-  <ion-list *ngSwitchCase="'puppies'">
-    <ion-item>
-      <ion-thumbnail item-start>
-        <img src="img/thumbnail-puppy-1.jpg">
-      </ion-thumbnail>
-      <h2>Ruby</h2>
-    </ion-item>
-    ...
-  </ion-list>
-
-  
-  <ion-list *ngSwitchCase="'todo'" no-padding>
-<ion-item no-padding *ngFor="let p of productos" (click)="suma(p)" text-nowrap>
-        <ion-grid item-content no-padding>
-            <ion-row>
-             
-              
-             
-      <ion-col col-9>
-        
-        <div text-nowrap>  
-         {{p.nombre_corto}}
-      
-          </div>
-        {{p.codigo}} </ion-col>
+    
  
-     
-{{carrito.redondea(p.precio_unitario)}}
+  <ion-infinite-scroll>
+  <ion-list *ngSwitchCase="'todo'" no-padding>
+      <ion-input type="text" autofocus (keypress)="hacerVenta($event)" [(ngModel)]="texto"></ion-input>
+<ion-item  class="item no-padding"  text-nowrap no-padding *ngFor="let t of servicioArticulo.tickets">
+                   <div item-start>
+                     {{trunca(t.nombre)}} x {{t.cantidad}}
 
+                   </div>
+                   
+  <div item-left> 
+        {{servicioArticulo.calcular(t.cantidad,t.precio)}}  
 
-            </ion-row>
-            
-            </ion-grid>
-          </ion-item>
-      
+    </div>
+ 
+    
+    <div item-right>  </div>
+      </ion-item>
     </ion-list>
+  
+  </ion-infinite-scroll>
 
 </div>

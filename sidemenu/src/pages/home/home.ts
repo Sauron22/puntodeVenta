@@ -1,34 +1,62 @@
-import { Component } from '@angular/core';
+import { Component,Input, ViewChild } from '@angular/core';
 import { NavController } from 'ionic-angular';
 
-import {ArticulosProvider} from '../../providers/articulos-servicio/articulos-servicio';
-import {CarritoProvider} from '../../providers/carrito/carrito';
+import {GProvider} from '../../providers/g/g'
+
 import {ListaComponent} from '../../components/lista/lista';
-import {DetalleReciboPage} from  '../detalle-recibo/detalle-recibo'
+import {HeaderComponent} from '../../components/header/header';
+import {DetalleReciboPage} from  '../detalle-recibo/detalle-recibo';
+import {ImprimirPage} from '../imprimir/imprimir';
+import { LoadingController } from 'ionic-angular';
+import {ArticulosProvider} from '../../providers/articulos-servicio/articulos-servicio';
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
 export class HomePage {
-
-  productos =[];
+  
+  
+  texto="";
+  total=0;
+  activo=false;
 
   constructor(public navCtrl: NavController,
-              public servicioProductos:ArticulosProvider,
-              public  carrito:CarritoProvider
+    public loadingCtrl: LoadingController,
+    public a:ArticulosProvider
+  
+    
+    
+      
   
   ) {
+     this.a=a;
+    
 
-    this.productos=this.servicioProductos.productos;
+    
 
   }
-  
+ 
+  activa(){
+    this.activo=!this.activo;
+  }
 
 goToDetalleRecibo(){
   
 this.navCtrl.push(DetalleReciboPage);
 
 }
+imprime(){
+this.navCtrl.push(ImprimirPage);
+}
+funcion(event){if(event.keyCode==13){
 
+this.texto='';       
 
 }
+
+}
+
+}
+
+
+
